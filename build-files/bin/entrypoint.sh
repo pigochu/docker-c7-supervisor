@@ -2,22 +2,17 @@
 
 /opt/c7supervisor/bin/docker-replacefiles.sh
 
-# run beford.d script
-if [ $(ls -A /docker-settings/before.d) ]; then
-	for shellfile in $(find /docker-settings/before.d -type f);
-		do
-			echo "run file: $shellfile"
-			eval $shellfile
-	done
+# run before-supervisor.d script
+if [ -d /docker-settings/before-supervisor.d ] && [ $(ls -A /docker-settings/before-supervisor.d) ]; then
+    for shellfile in $(find /docker-settings/before-supervisor.d -type f);
+        do
+            echo "Before supervisor run : $shellfile"
+            eval $shellfile
+    done
 fi
 
+# run after-supervisor.d script
 
-
-
-# run supervisor
-
-
-
-# run after.d
+/opt/c7supervisor/bin/docker-after-supervisor.sh &
 
 exec "$@"
