@@ -6,11 +6,10 @@ MAINTAINER Pigo Chu <pigochu@gmail.com>
 
 
 # Install packages
-RUN yum install -y epel-release
-RUN yum upgrade -y
-RUN yum install -y gettext supervisor
-RUN yum clean all
-
+RUN yum install -y epel-release \
+&& yum upgrade -y \
+&& yum install -y gettext supervisor \
+&& yum clean all
 
 # VOLUME
 RUN mkdir /docker-settings
