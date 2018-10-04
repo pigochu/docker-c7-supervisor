@@ -1,8 +1,5 @@
 #!/bin/bash
-
-/opt/c7supervisor/bin/docker-replacefiles.sh
-
-# run after-supervisor.d script
+# run after-supervisord.d script
 
 loop=1
 backoff=0
@@ -37,8 +34,8 @@ done
 
 
 
-if [ -d /docker-settings/after-supervisor.d ] && [ $(ls -A /docker-settings/after-supervisor.d) ]; then
-    for shellfile in $(find /docker-settings/after-supervisor.d -type f);
+if [ -d /docker-settings/after-supervisord.d ] && [ $(ls -A /docker-settings/after-supervisord.d) ]; then
+    for shellfile in $(find /docker-settings/after-supervisord.d -type f);
         do
             echo "After supervisor run : $shellfile"
             eval $shellfile

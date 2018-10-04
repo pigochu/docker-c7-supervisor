@@ -22,9 +22,9 @@ Docker Centos7-Supervisor
 主要執行初始化動作，初始化的過程如下
 1. 處理 /docker-settings/replace-files 下的檔案
 2. 處理 /docker-settings/template-files 下的檔案
-3. 執行 /docker-settings/before-supervisor.d 下的檔案
+3. 執行 /docker-settings/before-supervisord.d 下的檔案
 4. 執行 supervisor
-5. 執行 /docker-settings/after-supervisor.d 下的檔案
+5. 執行 /docker-settings/after-supervisord.d 下的檔案
 
 
 
@@ -36,8 +36,8 @@ Docker Centos7-Supervisor
 
 * replace-files : 存放於此目錄的檔案，會於尚未啟動 supervisor 之前，將檔案複製到 container 內。
 * templates-files :  類似 replace-files，會以 envsubst 方式將環境變數套用內容後，複製到 container 內。
-* before-supervisor.d : 在 supervisor 尚未啟動前，會先執行裡面的 script，執行順序會依照檔名排序
-* after-supervisor.d : 在 supervisor 啟動後才會執行裡面的 script，
+* before-supervisord.d : 在 supervisor 尚未啟動前，會先執行裡面的 script，執行順序會依照檔名排序
+* after-supervisord.d : 在 supervisor 啟動後才會執行裡面的 script，
   執行順序會依照檔名排序
 
 
