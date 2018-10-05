@@ -20,11 +20,12 @@ Docker Centos7-Supervisor
 本容器的進入點是 /opt/c7supervisor/bin/entrypoint.sh
 
 主要執行初始化動作，初始化的過程如下
-1. 處理 /docker-settings/replace-files 下的檔案
-2. 處理 /docker-settings/template-files 下的檔案
-3. 執行 /docker-settings/before-supervisord.d 下的檔案
-4. 執行 supervisor
-5. 執行 /docker-settings/after-supervisord.d 下的檔案
+1. 執行 /opt/c7supervisor/etc/init.d 下的 shell , 這個目錄是為了其他 image 以本 image 為base而設的，可以放一些初始化的 shell
+2. 處理 /docker-settings/replace-files 下的檔案
+3. 處理 /docker-settings/template-files 下的檔案
+4. 執行 /docker-settings/before-supervisord.d 下的檔案
+5. CMD 預設執行 supervisor
+6. 判斷 supervisord 狀態是否已經完成啟動所有服務，然後執行 /docker-settings/after-supervisord.d 下的檔案
 
 
 
@@ -37,8 +38,7 @@ Docker Centos7-Supervisor
 * replace-files : 存放於此目錄的檔案，會於尚未啟動 supervisor 之前，將檔案複製到 container 內。
 * templates-files :  類似 replace-files，會以 envsubst 方式將環境變數套用內容後，複製到 container 內。
 * before-supervisord.d : 在 supervisor 尚未啟動前，會先執行裡面的 script，執行順序會依照檔名排序
-* after-supervisord.d : 在 supervisor 啟動後才會執行裡面的 script，
-  執行順序會依照檔名排序
+* after-supervisord.d : 在 supervisor 啟動後才會執行裡面的 script，執行順序會依照檔名排序
 
 
 ## 範例 : 如果你想要讓 cron 執行你的 script ##
