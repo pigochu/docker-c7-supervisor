@@ -14,7 +14,7 @@ do
     for status in $(supervisorctl status | awk '{print $2}');
         do
             
-            echo "Check supervisord Status : $status"
+            # echo "Check supervisord Status : $status"
             if [ "$status" == "STARTING" ]; then
                 loop=1
                 break
